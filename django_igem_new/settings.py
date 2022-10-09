@@ -22,16 +22,17 @@ TEMPLATE_DIR = BASE_DIR.joinpath("templates")
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-t#(-ki+r(xl5a@168%gg_+zp5e%-nx(=5d#xjejz$8^-mba4#-"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get("DEBUG", 0)))
 
 ALLOWED_HOSTS = [
     "danielum16.pythonanywhere.com",
     "127.0.0.1:3000",
     "http://127.0.0.1:8000/",
-    "127.0.0.1"
+    "127.0.0.1",
+    "ec2-54-175-9-29.compute-1.amazonaws.com",
 ]
 
 
@@ -60,8 +61,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3300",
     "http://localhost:8000",
+    "http://ec2-54-175-9-29.compute-1.amazonaws.com",
 ]
 
 ROOT_URLCONF = "django_igem_new.urls"
